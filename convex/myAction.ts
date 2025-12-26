@@ -7,13 +7,13 @@ import { v } from "convex/values";
 
 export const ingest = action({
     args: {
-        splitText: v.any(),
+        splitText: v.array(v.string()),
         fileId: v.string()
     },
     handler: async (ctx, args) => {
         await ConvexVectorStore.fromTexts(
             args.splitText,
-            [{ fileId: args.fileId }],
+            args.splitText.map(() => ({ fileId: args.fileId })),
             new GoogleGenerativeAIEmbeddings({
                 apiKey: process.env.GOOGLE_API_KEY,
                 model: "gemini-embedding-001", // 768 dimensions
