@@ -16,7 +16,6 @@ export default function Dashboard() {
     <div className="flex h-screen bg-slate-50">
       {/* Mobile Menu Button */}
       <Header />
-      {/* Left Sidebar */}
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">

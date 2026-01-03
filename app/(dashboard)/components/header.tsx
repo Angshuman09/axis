@@ -4,6 +4,7 @@ import { Progress } from '@/components/ui/progress';
 import { useState } from "react";
 import { Button } from '@/components/ui/button';
 import { FileUpload } from './file-upload';
+import { useRouter } from 'next/navigation';
 
 export const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,6 +12,8 @@ export const Header = () => {
     { id: 1, name: 'Marketing Report Q4.pdf', uploadDate: '2024-12-20', pages: 24 },
     { id: 2, name: 'Financial Analysis.pdf', uploadDate: '2024-12-18', pages: 18 }
   ]);
+
+  const router = useRouter();
 
 
   const progressValue = (pdfs.length / 5) * 100;
@@ -40,12 +43,9 @@ export const Header = () => {
         `}
       >
         {/* Logo */}
-        <div className="h-16 flex items-center px-6 border-b border-slate-200">
+        <div onClick={()=>router.push('/')} className="h-16 flex items-center px-6 border-b border-slate-200 cursor-pointer">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">A</span>
-            </div>
-            <span className="text-xl font-semibold text-slate-900">Axis</span>
+            <span className="text-xl font-semibold text-slate-900">कागज़</span>
           </div>
         </div>
 

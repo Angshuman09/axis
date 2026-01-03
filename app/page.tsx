@@ -1,35 +1,69 @@
-import React from 'react';
+'use client'
 import ShinyText from '@/components/ShinyText';
 import { Heart, StarIcon } from 'lucide-react';
 import { GithubIcon } from 'lucide-react';
+import Link from 'next/link';
+import { UserButton, useUser } from '@clerk/clerk-react';
+import { useRouter } from 'next/navigation';
+import Dashboard from './(dashboard)/dashboard/page';
 
 export default function Home() {
+  const { user } = useUser();
+  const router = useRouter();
+
+  const handleGetStarted = async () => {
+    if (user) {
+      router.push('/dashboard')
+    }
+    else {
+      router.push('/sign-in')
+    }
+  }
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-slate-800">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-sm border-b border-slate-200/50">
         <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center max-w-6xl">
-          <div className="text-xl sm:text-2xl font-semibold text-slate-900">
+          <div onClick={() => router.push('/')} className="text-xl sm:text-2xl font-semibold text-slate-900 cursor-pointer">
             कागज़
           </div>
           <div className="flex gap-2 sm:gap-4 items-center">
-            <a href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-xs sm:text-sm font-medium">
+            <Link
+              scroll={false}
+              onClick={() => {
+                const el = document.getElementById("pricing");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+
+              href="#pricing" className="text-slate-600 hover:text-slate-900 transition-colors text-xs sm:text-sm font-medium">
               Pricing
-            </a>
-            <button className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors">
-              Log in
-            </button>
-            <button className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium bg-slate-900 text-white hover:bg-slate-800 rounded-lg transition-colors">
-              Get started
-            </button>
+            </Link>
+            {!user ? (
+              <>
+                <button onClick={() => router.push('/sign-in')} className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+                  Log in
+                </button>
+                <button onClick={() => router.push('/sign-up')} className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium bg-slate-900 text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+                  Get started
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={() => router.push('/dashboard')} className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium bg-slate-900 text-white hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
+                  Dashboard
+                </button>
+
+                <UserButton />
+              </>
+            )}
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center max-w-4xl">
-        <a
-          href="https://github.com/yourusername/kagaz"
+        <Link
+          href="https://github.com/Angshuman09/axis"
           target="_blank"
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 px-3 py-1.5 mb-6 sm:mb-8 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all"
@@ -39,7 +73,7 @@ export default function Home() {
           <span className="sm:hidden">Star us</span>
           <div className="w-px h-4 bg-black/10"></div>
           <StarIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
-        </a>
+        </Link>
 
 
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-slate-900 tracking-tight leading-tight px-2">
@@ -51,10 +85,10 @@ export default function Home() {
           Write, organize, and ask questions. Kagaz turns your notes into answers.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center px-4">
-          <button className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all text-sm w-full sm:w-auto">
+          <button onClick={handleGetStarted} className="px-6 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all text-sm w-full sm:w-auto cursor-pointer">
             Get started free →
           </button>
-          <button className="px-6 py-3 bg-white text-slate-700 font-medium rounded-lg hover:bg-slate-50 border border-slate-200 transition-all text-sm w-full sm:w-auto">
+          <button className="px-6 py-3 bg-white text-slate-700 font-medium rounded-lg hover:bg-slate-50 border border-slate-200 transition-all text-sm w-full sm:w-auto cursor-pointer">
             See how it works
           </button>
         </div>
