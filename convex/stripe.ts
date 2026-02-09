@@ -40,8 +40,8 @@ export const createSubscriptionCheckout = action({
       customerId: customer.customerId,
       mode: "subscription",
       // Redirect to frontend (localhost in dev, production URL in prod)
-      successUrl: `${process.env.HOST_URL ?? "http://localhost:3000"}/dashboard?success=true`,
-      cancelUrl: `${process.env.HOST_URL ?? "http://localhost:3000"}/dashboard/upgrade?canceled=true`,
+      successUrl: `${process.env.HOST_URL ?? "https://kagaz-notes.vercel.app"}/dashboard?success=true`,
+      cancelUrl: `${process.env.HOST_URL ?? "https://kagaz-notes.vercel.app"}/dashboard/upgrade?canceled=true`,
       subscriptionMetadata: { 
         userId: identity.subject,
         email: identity.email || "",
@@ -80,8 +80,8 @@ export const createPaymentCheckout = action({
       priceId,
       customerId: customer.customerId,
       mode: "payment",
-      successUrl: `${process.env.HOST_URL ?? "http://localhost:3000"}/dashboard?success=true`,
-      cancelUrl: `${process.env.HOST_URL ?? "http://localhost:3000"}/dashboard/upgrade?canceled=true`,
+      successUrl: `${process.env.HOST_URL ?? "https://kagaz-notes.vercel.app"}/dashboard?success=true`,
+      cancelUrl: `${process.env.HOST_URL ?? "https://kagaz-notes.vercel.app"}/dashboard/upgrade?canceled=true`,
       paymentIntentMetadata: { 
         userId: identity.subject,
         email: identity.email || "",
