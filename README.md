@@ -18,7 +18,7 @@
 
 ## 📸 Preview
 
-![Kagaz](public/homePage.png)
+![Kagaz](public/home-page.png)
 
 ---
 
