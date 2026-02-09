@@ -94,3 +94,17 @@ export const getUser = query({
     return user;
   },
 });
+
+export const getUserByStripeCustomerId = query({
+  args: {
+    stripeCustomerId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_stripe_customer", (q) => q.eq("stripeCustomerId", args.stripeCustomerId))
+      .first();
+
+    return user;
+  },
+});

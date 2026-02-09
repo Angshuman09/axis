@@ -10,6 +10,14 @@ import Pricing from "./pricing";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useEffect } from "react";
+import { Playfair_Display } from "next/font/google";
+
+const elegantFont = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
 
 export default function Home() {
   const { user } = useUser();
@@ -107,9 +115,14 @@ export default function Home() {
           <StarIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
         </Link>
 
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-slate-900 tracking-tight leading-tight px-2">
-          Your <span className="text-[#D4AF37]">intelligent</span> notebook{" "}
-          <br className="hidden sm:block" />
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-slate-900 tracking-tight leading-tight px-2 font-[family-name:var(--font-outfit)]">
+          Your{" "}
+          <span
+            className={`text-[#D4AF37] italic text-[1.15em] ${elegantFont.className}`}
+          >
+            intelligent
+          </span>{" "}
+          notebook <br className="hidden sm:block" />
           <span className="sm:hidden">for </span>
           <span className="hidden sm:inline">for any </span>document.
         </h1>

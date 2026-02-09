@@ -1,23 +1,40 @@
 "use client";
 import ShinyText from "@/components/ShinyText";
 import { useRouter } from "next/navigation";
-// import { useQuery } from "convex/react";
-// import { api } from "@/convex/_generated/api";
+import { useAction } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { useUser } from "@clerk/clerk-react";
-// import { toast } from "sonner";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const Pricing = () => {
   const router = useRouter();
   const { user } = useUser();
-  const handleUpgrade = () => {
-    process.env.NODE_ENV === "development" ? router.push("https://buy.stripe.com/test_bJefZibOAacfghw7iRgnK00") : router.push("https://buy.stripe.com/test_bJefZibOAacfghw7iRgnK00");
-    // const currentUser = useQuery(api.user.getUser,{
-    //   email: user?.primaryEmailAddress?.emailAddress as string
-    // });
+  const [isLoading, setIsLoading] = useState(false);
+  const createCheckout = useAction(api.stripe.createPaymentCheckout);
 
-    // if(currentUser?.upgrade){
-    //   toast.success("🎉 You are now Pro!");
-    // }
+  const handleUpgrade = async () => {
+    if (!user) {
+      toast.error("Please sign in to upgrade");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      const session = await createCheckout({});
+
+      if (session.url) {
+        window.location.href = session.url;
+      } else {
+        toast.error("Failed to create checkout session");
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast.error("Failed to start checkout. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <section
@@ -124,7 +141,6 @@ const Pricing = () => {
         </div>
 
         <div className="group relative p-6 sm:p-8 bg-amber-50 border border-black/5 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300">
-
           <div className="absolute -top-2.5 sm:-top-3 right-4 px-2 sm:px-2.5 py-0.5 bg-[#D4AF37] text-black text-[9px] sm:text-[10px] font-semibold rounded-full tracking-wide">
             POPULAR
           </div>
@@ -147,37 +163,36 @@ const Pricing = () => {
 
           <button
             onClick={handleUpgrade}
-            className="w-full py-2.5 mb-6 sm:mb-8 bg-slate-900 text-white hover:bg-black font-medium rounded-lg transition-all text-xs sm:text-sm"
+            disabled={isLoading}
+            className="w-full py-2.5 mb-6 sm:mb-8 bg-slate-900 text-white hover:bg-black font-medium rounded-lg transition-all text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Upgrade now
+            {isLoading ? "Creating checkout..." : "Upgrade now"}
           </button>
 
           <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
-            {[
-              "Unlimited credits",
-              "Unlimited notes",
-              "Priority support",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-center gap-2 text-neutral-700"
-              >
-                <svg
-                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37] flex-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {["Unlimited credits", "Unlimited notes", "Priority support"].map(
+              (item) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-2 text-neutral-700"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>{item}</span>
-              </li>
-            ))}
+                  <svg
+                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D4AF37] flex-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ),
+            )}
           </ul>
 
           {/* Subtle Hover Glow */}
