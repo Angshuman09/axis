@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Kagaz",
     images: [
       {
-        url: "/homePage.png",
+        url: "/home-page.png",
         width: 1200,
         height: 630,
       },
