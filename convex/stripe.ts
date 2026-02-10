@@ -27,7 +27,6 @@ export const createSubscriptionCheckout = action({
       name: identity.name,
     });
 
-    // Use provided priceId or default
     const priceId = args.priceId || STRIPE_PRICE_ID;
 
     if (!priceId) {
@@ -39,7 +38,6 @@ export const createSubscriptionCheckout = action({
       priceId,
       customerId: customer.customerId,
       mode: "subscription",
-      // Redirect to frontend (localhost in dev, production URL in prod)
       successUrl: `${process.env.HOST_URL ?? "https://kagaz-notes.vercel.app"}/dashboard?success=true`,
       cancelUrl: `${process.env.HOST_URL ?? "https://kagaz-notes.vercel.app"}/dashboard/upgrade?canceled=true`,
       subscriptionMetadata: { 
@@ -69,7 +67,6 @@ export const createPaymentCheckout = action({
       name: identity.name,
     });
 
-    // Use provided priceId or default
     const priceId = args.priceId || STRIPE_PRICE_ID;
 
     if (!priceId) {

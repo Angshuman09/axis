@@ -11,6 +11,7 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useEffect } from "react";
 import { Playfair_Display } from "next/font/google";
+import Footer from "@/components/footer";
 
 const elegantFont = Playfair_Display({
   subsets: ["latin"],
@@ -108,17 +109,20 @@ export default function Home() {
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 px-3 py-1.5 mb-6 sm:mb-8 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all"
         >
-          <GithubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellowstar animate-beat transition-colors" />
+          <GithubIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-beat transition-colors" />
+
           <span className="hidden sm:inline">Star on GitHub</span>
           <span className="sm:hidden">Star us</span>
+
           <div className="w-px h-4 bg-black/10"></div>
-          <StarIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
+
+          <StarIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors text-yellow-400 group-hover:fill-yellow-400" />
         </Link>
 
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-slate-900 tracking-tight leading-tight px-2 font-[family-name:var(--font-outfit)]">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 text-slate-900 tracking-tight leading-tight px-2 font-(family-name:var(--font-outfit))">
           Your{" "}
           <span
-            className={`text-[#D4AF37] italic text-[1.15em] ${elegantFont.className}`}
+            className={`text-[#D4AF37] italic text-[1.08em] ${elegantFont.className}`}
           >
             intelligent
           </span>{" "}
@@ -176,14 +180,7 @@ export default function Home() {
       {/* Pricing Section */}
       <Pricing />
       {/* Footer */}
-      <footer className="border-t border-slate-200 mt-12 sm:mt-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 text-center text-slate-600">
-          <p className="text-xs sm:text-sm flex justify-center items-center gap-2">
-            Made with love by Angshu{" "}
-            <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 fill-red-400" />
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -8,6 +8,8 @@ import {
   X,
   LayoutDashboard,
   Sparkles,
+  Gem,
+  CrownIcon,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useState } from "react";
@@ -137,7 +139,7 @@ export const Sidebar = () => {
               onClick={() => router.push("/dashboard/upgrade")}
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 transition-colors text-sm font-medium"
             >
-              <Sparkles size={16} />
+              <CrownIcon size={16} />
               Upgrade Plan
             </button>
           </div>
