@@ -34,7 +34,40 @@
 
 ---
 
-## 🛠️ Getting Started
+### Document Embedding Success
+
+![Document Embedding Proof](./public/embedding.png)
+
+*Screenshot showing successful document processing and embedding generation*
+
+---
+
+## ⚠️ Known Limitations
+
+### Token Limit Constraints
+
+- **Large File Processing**: Due to API token limits, very large PDF files may not be fully processed or embedded
+- **Incomplete Embeddings**: Documents exceeding token limits will only have partial content embedded, potentially missing important information
+- **Processing Timeouts**: Extremely large documents may experience timeout errors during the embedding process
+
+### Other Limitations
+
+- **File Format Support**: Currently limited to PDF and text files only
+- **Context Window**: Answers are based on limited context chunks, which may not capture the full document scope
+- **Processing Time**: Large documents require significant time for chunking and embedding generation
+
+---
+
+
+## 📖 Usage
+
+1. **Sign In**: Create an account or sign in using Clerk authentication
+2. **Upload Document**: Click the upload button and select your PDF or text file
+3. **Wait for Processing**: The system will extract text, chunk it, and generate embeddings
+4. **Ask Questions**: Type your question in the chat interface
+5. **Get Answers**: Receive AI-generated answers based on your document content
+
+---
 
 ### Prerequisites
 
@@ -43,6 +76,7 @@
 - A Clerk account ([sign up here](https://clerk.com/))
 - A Stripe account ([sign up here](https://stripe.com/))
 
+---
 
 ## 📦 Project Structure
 
@@ -64,6 +98,59 @@ kagaz/
 ├── public/               # Static assets
 └── configs/              # Configuration files
 ```
+
+---
+
+### Setup Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Angshuman09/kagaz.git
+   cd kagaz
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment variables**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+    NODE_ENV = development
+    CONVEX_DEPLOYMENT= your_convex_deployment
+    NEXT_PUBLIC_CONVEX_URL= your_convex_url
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY= your_clerk_publishable_key
+    CLERK_SECRET_KEY= your_clerk_secret_key
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
+    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+    CLERK_JWT_ISSUER_DOMAIN= your_jwt_issuer_domain
+    GEMINI_API_KEY= your_gemini_api_key
+    NEXT_PUBLIC_STRIPE_PUBLIC_KEY = your_stripe_public_key
+    STRIPE_SECRET_KEY = your_stripe_secret_key
+    STRIPE_WEBHOOK_SECRET = your_stripe_webhook_secret
+    STRIPE_PRICE_ID= your_stripe_price_id
+    HOST_URL = your_host_url
+   ```
+
+4. **Set up Convex**
+   ```bash
+   npx convex dev
+   ```
+
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   
+   Navigate to `http://localhost:3000`
 
 ---
 
