@@ -22,7 +22,7 @@
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Frontend:** [Next.js 15](https://nextjs.org/) - React framework for production
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
@@ -42,7 +42,7 @@
 
 ---
 
-## ⚠️ Known Limitations
+## Known Limitations
 
 ### Token Limit Constraints
 
@@ -78,7 +78,7 @@
 
 ---
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 kagaz/
@@ -154,7 +154,7 @@ kagaz/
 
 ---
 
-## 👤 Author
+## Author
 
 **Angshuman**
 
