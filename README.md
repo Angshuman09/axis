@@ -24,13 +24,13 @@
 
 ## Tech Stack
 
-- **Frontend:** [Next.js 15](https://nextjs.org/) - React framework for production
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- **Backend:** [Convex](https://convex.dev/) - Real-time backend platform
-- **Authentication:** [Clerk](https://clerk.com/) - Complete user management
-- **Payments:** [Stripe](https://stripe.com/) - Secure payment processing
-- **Deployment:** [Vercel](https://vercel.com/) - Optimal Next.js hosting
-- **Language:** TypeScript - Type-safe development
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS
+- **Backend:** Convex (database + server functions)
+- **Authentication:** Clerk
+- **AI/RAG:** LangChain, Google Generative AI (Gemini), PDF Parse
+- **Payments:** Stripe
+- **UI Components:** shadcn UI, Tiptap (rich text editor)
+- **Styling:** Tailwind CSS with custom animations
 
 ---
 
@@ -59,7 +59,7 @@
 ---
 
 
-## 📖 Usage
+##  Usage
 
 1. **Sign In**: Create an account or sign in using Clerk authentication
 2. **Upload Document**: Click the upload button and select your PDF or text file
