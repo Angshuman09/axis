@@ -34,6 +34,14 @@
 
 ---
 
+### Workflow
+
+! [Simple workflow of how RAG works](./public/workflow.png)
+
+*Workflow of how RAG works in Kagaz
+
+---
+
 ### Document Embedding Success
 
 ![Document Embedding Proof](./public/embedding.png)
