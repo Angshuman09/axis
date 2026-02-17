@@ -36,7 +36,7 @@
 
 ### Workflow
 
-! [Simple workflow of how RAG works](./public/workflow.png)
+![Simple workflow of how RAG works](./public/workflow.png)
 
 *Workflow of how RAG works in Kagaz
 
